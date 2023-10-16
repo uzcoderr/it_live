@@ -35,13 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
         value: bloc,
         child: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
-            // if(state.status.isInProgress){
-            //   AppFunctions.showLoading(context);
-            // }else if(state.status.isSuccess){
-            //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const MainScreen(),), (route) => false);
-            // }else if(state.status.isFailure){
-            //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('check and try again!')));
-            // }
+            if(state.status.isInProgress){
+              AppFunctions.showLoading(context);
+            }else if(state.status.isSuccess){
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const MainScreen(),), (route) => false);
+            }else if(state.status.isFailure){
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('check and try again!')));
+            }
           },
           builder: (context, state) {
           return SafeArea(
@@ -114,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const MainScreen(),), (route) => false);
                                   },
                                 onError: (error){
-                                    Navigator.pop(context);
                                     AppFunctions.handleErrorFromResponse(error, context);
                                 }
                               ));

@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: BlocConsumer<RegisterBloc, RegisterState>(
           listener: (context, state) {
             if(state.status.isInProgress){
-              AppFunctions.showLoading(context);
+              AppFunctions.showLoading(context,log: true);
             }else if(state.status.isSuccess){
               // Navigator.push(context,MaterialPageRoute(builder: (context) => const Scaffold(body: Text('kot'),),));
             }
@@ -155,9 +155,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             bloc.add(RegisterUserEvent(
                                                 user: user,
                                                 loading: (){
-                                                  AppFunctions.showLoading(context);
+                                                  AppFunctions.showLoading(context,log: true);
                                                 },
-                                                error: (error){ AppFunctions.handleErrorFromResponse(error, context); },
+                                                error: (error){ AppFunctions.handleErrorFromResponse(error, context,log: true); },
                                                 success: (success){
                                                   Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyEmailPage(email: email.text,bloc: bloc),));
                                                 }
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                     ),),);
                                 }, error: (error){}, loading: (){
-                                  // AppFunctions.showLoading(context);
+                                  // AppFunctions.showLoading(context,log: true);
                                 }, id: selectedGroup.id!.toInt()));
 
                               }

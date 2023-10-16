@@ -45,6 +45,11 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   GetUsersRatingUseCase getUsersRatingUseCase = GetUsersRatingUseCase();
 
   MainBloc() : super(const MainState()) {
+    on<InterViewResetEvent>((event,emit)async{
+      emit(state.copyWith(isFinishInterViewQuestions: false));
+      emit(state.copyWith(interViewQuestions: [],interViewQuestionsStatus: FormzSubmissionStatus.initial,page: 0));
+      event.success();
+    });
     on<GetMoreRatingUsersEvent>((event,emit)async{
       final result = await getUsersRatingUseCase.call(event.params);
       if(result.isRight){

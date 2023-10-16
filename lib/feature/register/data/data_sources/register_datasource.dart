@@ -34,7 +34,7 @@ class RegisterDatasourceImplementation extends RegisterDatasource{
       }
       throw ServerException(
           statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          errorMessage: response.data['message'] ?? '');
     } on ServerException {
       rethrow;
     } on Exception catch (e) {
@@ -53,7 +53,7 @@ class RegisterDatasourceImplementation extends RegisterDatasource{
       }
       throw ServerException(
           statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          errorMessage: response.data['message'] ?? '');
     } on ServerException {
       rethrow;
     } on Exception catch (e) {
@@ -72,7 +72,7 @@ class RegisterDatasourceImplementation extends RegisterDatasource{
       }
       throw ServerException(
           statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          errorMessage: response.data['message'] ?? '');
     } on ServerException {
       rethrow;
     } on Exception catch (e) {
@@ -92,7 +92,7 @@ class RegisterDatasourceImplementation extends RegisterDatasource{
       }
       throw ServerException(
           statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          errorMessage: response.data['message'] ?? '');
     } on ServerException {
       rethrow;
     } on Exception catch (e) {

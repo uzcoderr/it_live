@@ -16,7 +16,8 @@ class QuestionContainer extends StatelessWidget {
   final int questionId;
   final int questionPosition;
   final ValueNotifier<int> timer;
-  const QuestionContainer({super.key,required this.timer, required this.questionModel,required this.pageController,required this.bloc,required this.questionId,required this.questionPosition});
+  final bool isFinish;
+  const QuestionContainer({super.key,required this.isFinish, required this.timer, required this.questionModel,required this.pageController,required this.bloc,required this.questionId,required this.questionPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +57,8 @@ class QuestionContainer extends StatelessWidget {
   void nextPage(BuildContext context){
     bloc.add(GetOneQuestionByStatusIdEvent(error: (error){ AppFunctions.handleErrorFromResponse(error, context); }, success: (success){
       Navigator.pop(context);
-      if(questionPosition==pageController.page!.toInt()+1){
-        bloc.add(SetIsFinishedEvent(error: (error){ AppFunctions.handleErrorFromResponse(error, context); }, success: (){
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const MainScreen()), (route) => false);
-        }, loading: (){}));
+      if(isFinish){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const MainScreen()), (route) => false);
       }else{
         pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.linear);
       }

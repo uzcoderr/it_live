@@ -49,7 +49,7 @@ class _TestingPageState extends State<TestingPage> {
           time.value--;
         }
       });
-      widget.bloc.add(GetOneQuestionByStatusIdEvent(questionPosition: 0,error: (error){ AppFunctions.handleErrorFromResponse(error, context); }, success: (success){ status.value = FormzSubmissionStatus.success; }, loading: (){}, questionId: widget.bloc.state.listQuestions[0].statusId??1));
+      widget.bloc.add(GetOneQuestionByStatusIdEvent(questionPosition: 0,error: (error){ AppFunctions.handleErrorFromResponse(error, context); }, success: (success){ status.value = FormzSubmissionStatus.success; }, loading: (){}, questionId: widget.bloc.state.listQuestions[0].id??1));
     }, loading: (){}, statusId: widget.userInformation.status!.id!));
     pageController = PageController(initialPage: 0);
   }
@@ -97,6 +97,7 @@ class _TestingPageState extends State<TestingPage> {
                                 bloc: widget.bloc,
                                 questionId: question.id!,
                                 questionPosition: questionNumber,
+                                isFinish: questionNumber==widget.bloc.state.listQuestions.length,
                                 timer: time,
                               );
                             },

@@ -97,3 +97,8 @@ class GetMoreRatingUsersEvent extends MainEvent{
   final ThreeObj params;
   GetMoreRatingUsersEvent({required this.params});
 }
+
+class InterViewResetEvent extends MainEvent{
+  final Function success;
+  InterViewResetEvent({required this.success});
+}
